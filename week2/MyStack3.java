@@ -1,13 +1,13 @@
-public class MyStack2 {
+public class MyStack3 {
 	private int maxCapacity;
 	private int[] stack;
 	private int top;
 	
-	public MyStack2() {
+	public MyStack3() {
 		this(5);
 	}
 	
-	public MyStack2(int capacity) {
+	public MyStack3(int capacity) {
 		this.stack = new int[capacity];
 		this.maxCapacity = capacity;
 		this.top = -1;
@@ -15,9 +15,9 @@ public class MyStack2 {
 	
 	public boolean isFull() {
 		if (this.top == this.maxCapacity - 1) {
-			System.out.println("The Stack is FULL!!!");
 			return true;
-		} else return false;
+		}
+		return false;
 	}
 	
 	public boolean isEmpty() {
@@ -28,7 +28,15 @@ public class MyStack2 {
 	
 	public void push(int theElement) {
 		if (!isFull()) {
-			stack[++top] = theElement;
+			this.stack[++top] = theElement;
+		} else {
+			int stack1[] = new int[maxCapacity * 2];
+			for (int i = 0; i < maxCapacity; i++) {
+				stack1[i] = stack[i];
+			}
+			this.stack = stack1;
+			this.maxCapacity *= 2;
+			this.stack[++top] = theElement;
 		}
 	}
 	
@@ -49,7 +57,7 @@ public class MyStack2 {
 	}
 	
 	public static void main(String args[]) {	
-		MyStack2 stack = new MyStack2();
+		MyStack3 stack = new MyStack3();
 		
 		stack.push(1);
 		stack.push(2);
@@ -61,6 +69,10 @@ public class MyStack2 {
 		stack.push(6);
 		stack.push(7);
 		stack.push(8);
+		stack.push(9);
+		stack.push(10);
+		stack.push(11);
+		stack.push(12);
 		stack.pop();
 		stack.popall();
 		stack.pop();
